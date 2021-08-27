@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  mysql:
+    platform: linux/amd64
+    image: library/mysql:8.0.19
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - zuro-db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: zuro-local
+      MYSQL_USER: zuro
+      MYSQL_PASSWORD: zuro
+      MYSQL_ROOT_PASSWORD: zuro
+
+volumes:
+  zuro-db:
